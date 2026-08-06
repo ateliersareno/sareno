@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="" />
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300&family=Jost:wght@300;400;500&family=JetBrains+Mono:wght@400&display=swap" rel="stylesheet" />
+<script src="./image-slot.js"></script>
+<style>
+  body { margin: 0; background: #1B1918; }
+  a { color: inherit; text-decoration: none; }
+  a:hover { color: #B08D57; }
+  ::selection { background: #B08D57; color: #1B1918; }
+</style>
+</helmet>
+<div style="background:#1B1918;color:#F1ECE3;font-family:Jost,sans-serif;font-weight:300;overflow-x:hidden">
+
+  <header style="position:sticky;top:0;z-index:50;display:flex;align-items:center;justify-content:space-between;gap:32px;padding:20px 48px;background:rgba(27,25,24,0.88);backdrop-filter:blur(14px);border-bottom:1px solid rgba(241,236,227,0.1)">
+    <a href="Atelier%20Sareno.dc.html" style="font-family:'Cormorant Garamond',serif;font-weight:400;font-size:26px;line-height:1.1;letter-spacing:0.04em">Sareno<br />Atelier</a>
+    <nav style="display:flex;gap:28px;font-size:12px;font-weight:600;letter-spacing:0.14em;text-transform:uppercase;color:#F1ECE3;white-space:nowrap">
+      <a href="Atelier%20Sareno.dc.html">Home</a>
+      <a href="Appointment.dc.html" style="color:#B08D57">Make Appointment</a>
+      <a href="Services.dc.html">Services</a>
+      <a href="About.dc.html">About</a>
+    </nav>
+  </header>
+
+  <section style="padding:70px 48px 40px;text-align:center">
+    <h1 style="margin:0;font-family:'Cormorant Garamond',serif;font-weight:300;font-size:clamp(34px,4vw,54px);color:#F1ECE3">Order placement &amp; fitting</h1>
+  </section>
+
+  <sc-for list="{{ groups }}" as="group" hint-placeholder-count="2">
+    <section style="padding:0 48px 60px">
+      <sc-if value="{{ group.showTitle }}" hint-placeholder-val="{{ true }}">
+        <h2 style="margin:0 0 32px;font-family:'Cormorant Garamond',serif;font-weight:400;font-size:38px">{{ group.title }}</h2>
+      </sc-if>
+      <div style="display:flex;flex-direction:column">
+        <sc-for list="{{ group.items }}" as="svc" hint-placeholder-count="2">
+          <div style="display:flex;align-items:center;gap:32px;padding:28px 0;border-bottom:1px solid rgba(241,236,227,0.1)">
+            <div style="width:220px;height:220px;flex:none;border:1px solid rgba(241,236,227,0.12)">
+              <image-slot id="{{ svc.slotId }}" shape="rect" fit="cover" placeholder="Drop a photo"></image-slot>
+            </div>
+            <div style="flex:1;display:flex;flex-direction:column;gap:6px;min-width:0">
+              <h3 style="margin:0;font-family:'Cormorant Garamond',serif;font-weight:400;font-size:28px">{{ svc.title }}</h3>
+              <span style="font-size:14px;color:rgba(241,236,227,0.55)">{{ svc.meta }}</span>
+              <sc-if value="{{ svc.body }}" hint-placeholder-val="{{ false }}">
+                <p style="margin:6px 0 0;font-size:14px;line-height:1.6;color:rgba(241,236,227,0.55);max-width:52ch">{{ svc.body }}</p>
+              </sc-if>
+            </div>
+            <a href="Appointment.dc.html" style="flex:none;background:#F1ECE3;color:#1B1918;padding:16px 26px;font-size:11px;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;text-align:center;line-height:1.5" style-hover="background:#B08D57;color:#1B1918">Make<br />Appointment</a>
+          </div>
+        </sc-for>
+      </div>
+    </section>
+  </sc-for>
+
+  <footer style="background:#FBF9F5;color:#241F1A">
+    <div style="font-family: Times New Roman; font-weight: 600; font-size: clamp(64px,13vw,220px); line-height: 0.9; letter-spacing: 0.02em; text-align: center; padding: 60px 24px 40px; color: transparent; -webkit-text-stroke: 1.5px #000">Atelier Sareno</div>
+    <div style="display:flex;flex-wrap:wrap;align-items:center;justify-content:center;gap:32px;padding:0 48px 48px">
+      <div style="display:flex;align-items:center;gap:32px;flex-wrap:nowrap;justify-content:center;font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:0.12em;text-transform:uppercase">
+        <a href="Atelier%20Sareno.dc.html" style="color:#241F1A">Home</a>
+        <a href="About.dc.html" style="color:#241F1A">About</a>
+        <a href="Services.dc.html" style="color:#241F1A">Services</a>
+        <a href="Appointment.dc.html" style="color:#241F1A">Appointment</a>
+      </div>
+    </div>
+    <div style="border-top:1px solid rgba(36,31,26,0.16);padding:22px 48px;font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:0.1em;color:#B08D57">© 2026 Atelier Sareno</div>
+  </footer>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  renderVals() {
+    return {
+      groups: [
+        {
+          title: "",
+          showTitle: false,
+          items: [
+            { title: "Bespoke Suits", slotId: "svc-photo-suits", meta: "1 hr  |  Starting at $1,400" },
+            { title: "Custom Shirts", slotId: "svc-photo-shirts", meta: "1 hr  |  Free" },
+            { title: "Tuxedos & Black Tie", slotId: "svc-photo-tux", meta: "1 hr  |  Free" }
+          ]
+        },
+        {
+          title: "Alteration",
+          showTitle: true,
+          items: [
+            { title: "Alteration", slotId: "svc-photo-alt", meta: "1 hr  |  Price upon consultation", body: "Expert alterations for a perfect fit." }
+          ]
+        },
+        {
+          title: "Outerwear",
+          showTitle: true,
+          items: [
+            { title: "Men's Outerwear", slotId: "svc-photo-outerwear", meta: "1 hr  |  Free", body: "Custom coats and jackets tailored for fit and warmth." }
+          ]
+        }
+      ]
+    };
+  }
+}
+</script>
+</body>
+</html>

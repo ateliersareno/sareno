@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="" />
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300&family=Jost:wght@300;400;500&family=JetBrains+Mono:wght@400&display=swap" rel="stylesheet" />
+<script src="./image-slot.js"></script>
+<style>
+  body { margin: 0; background: #FBF9F5; }
+  a { color: inherit; text-decoration: none; }
+  a:hover { color: #B08D57; }
+  ::selection { background: #B08D57; color: #FBF9F5; }
+</style>
+</helmet>
+<div style="background:#FBF9F5;color:#241F1A;font-family:Jost,sans-serif;font-weight:300;overflow-x:hidden">
+
+  <header style="position:sticky;top:0;z-index:50;display:flex;align-items:center;justify-content:space-between;gap:32px;padding:20px 48px;background:rgba(255,255,255,0.82);backdrop-filter:blur(14px);border-bottom:1px solid rgba(36,31,26,0.08)">
+    <a href="Atelier%20Sareno.dc.html" style="font-family:'Cormorant Garamond',serif;font-size:20px;letter-spacing:0.34em;text-transform:uppercase">Atelier Sareno</a>
+    <nav style="display:flex;gap:36px;font-size:11px;letter-spacing:0.22em;text-transform:uppercase;color:rgba(36,31,26,0.72)">
+      <a href="Atelier%20Sareno.dc.html" style="color:#B08D57">Home</a>
+      <a href="Appointment.dc.html">Make Appointment</a>
+      <a href="Services.dc.html">Services</a>
+      <a href="Gallery.dc.html">Style Gallery</a>
+      <a href="About.dc.html">About</a>
+    </nav>
+  </header>
+
+  <section style="position:relative;min-height:100vh;display:flex;align-items:center;overflow:hidden" onDragOver="{{ onVideoDragOver }}" onDrop="{{ onVideoDrop }}">
+    <video id="hero-video" autoplay="" loop="" playsinline="" poster="uploads/0ecf86f2f5be30c31dea0d783cc0aaf9.jpg" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 20%;z-index:0"></video>
+    <div style="position:absolute;inset:0;background:linear-gradient(90deg,rgba(255,255,255,0.9) 0%,rgba(255,255,255,0.55) 55%,rgba(255,255,255,0.15) 100%);z-index:1"></div>
+    <label for="hero-video-input" style="position:absolute;bottom:24px;right:24px;z-index:3;background:rgba(255,255,255,0.75);border:1px solid rgba(239,234,225,0.3);color:#241F1A;padding:10px 18px;font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:0.14em;text-transform:uppercase;cursor:pointer" style-hover="border-color:#B08D57">Upload background video</label>
+    <input id="hero-video-input" type="file" accept="video/*" onChange="{{ onVideoChosen }}" style="display:none" />
+    <div style="position:relative;z-index:2;display:flex;flex-direction:column;gap:34px;max-width:620px;padding:96px 48px">
+      <h1 style="margin:0;font-family:'Cormorant Garamond',serif;font-weight:300;font-size:clamp(52px,6.4vw,104px);line-height:0.95;letter-spacing:-0.02em">Bespoke Man<br />and Women<br /><em style="color:#B08D57">Suits</em></h1>
+      <p style="margin:0;font-family:'Cormorant Garamond',serif;font-size:26px;line-height:1.4;color:#B08D57;max-width:34ch;text-wrap:pretty">We bring Italy to you — mills of Biella, hands of the atelier, a suit that could only be yours.</p>
+      <p style="margin:0;font-size:18px;line-height:1.65;color:rgba(36,31,26,0.66);max-width:44ch;text-wrap:pretty">Made-to-measure, semi-bespoke and full bespoke garments, drafted from your own pattern and finished by hand in our atelier.</p>
+      <div style="display:flex;gap:16px;flex-wrap:wrap;padding-top:6px">
+        <a href="Appointment.dc.html" style="background:#B08D57;color:#FBF9F5;padding:16px 32px;font-size:11px;letter-spacing:0.22em;text-transform:uppercase" style-hover="background:#241F1A">Book a consultation</a>
+        <a href="Services.dc.html" style="border:1px solid rgba(36,31,26,0.18);padding:16px 32px;font-size:11px;letter-spacing:0.22em;text-transform:uppercase" style-hover="border-color:#241F1A">View services</a>
+      </div>
+      <div style="display:flex;gap:44px;padding-top:18px;border-top:1px solid rgba(36,31,26,0.09);margin-top:12px">
+        <div style="display:flex;flex-direction:column;gap:6px"><span style="font-family:'Cormorant Garamond',serif;font-size:34px;color:#241F1A">3</span><span style="font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:0.18em;text-transform:uppercase;color:rgba(36,31,26,0.5)">Levels of make</span></div>
+        <div style="display:flex;flex-direction:column;gap:6px"><span style="font-family:'Cormorant Garamond',serif;font-size:34px;color:#241F1A">60–90</span><span style="font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:0.18em;text-transform:uppercase;color:rgba(36,31,26,0.5)">Minute consultation</span></div>
+        <div style="display:flex;flex-direction:column;gap:6px"><span style="font-family:'Cormorant Garamond',serif;font-size:34px;color:#241F1A">$1,250</span><span style="font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:0.18em;text-transform:uppercase;color:rgba(36,31,26,0.5)">Suits from</span></div>
+      </div>
+    </div>
+  </section>
+
+  <section style="display:flex;gap:70px;padding:22px 48px;border-block:1px solid rgba(36,31,26,0.08);font-family:'Cormorant Garamond',serif;font-size:17px;letter-spacing:0.3em;text-transform:uppercase;color:rgba(36,31,26,0.4);white-space:nowrap;overflow:hidden">
+    <span>Made-to-Measure</span><span>Semi-Bespoke</span><span>Full Bespoke</span><span>Weddings</span><span>Alterations</span><span>Consultation</span><span>Made-to-Measure</span><span>Semi-Bespoke</span>
+  </section>
+
+  <section style="display:grid;grid-template-columns:1fr 1fr;align-items:center;border-top:1px solid rgba(36,31,26,0.1);background:#F1ECE3">
+    <div style="padding:130px 48px;text-align:center;display:flex;flex-direction:column;align-items:center;gap:30px">
+      <h2 style="margin:0;font-family:'Cormorant Garamond',serif;font-weight:300;font-size:clamp(44px,6vw,88px);line-height:1;max-width:14ch">Book your first fitting</h2>
+      <p style="margin:0;font-size:17px;line-height:1.7;color:rgba(36,31,26,0.6);max-width:52ch;text-wrap:pretty">Consultations run 60–90 minutes and can be held at our atelier, at your home, or at your office.</p>
+      <a href="Appointment.dc.html" style="background:#B08D57;color:#FBF9F5;padding:18px 44px;font-size:12px;letter-spacing:0.24em;text-transform:uppercase;margin-top:10px" style-hover="background:#241F1A">Make an appointment</a>
+    </div>
+    <div style="aspect-ratio:4/3;border-left:1px solid rgba(36,31,26,0.1)">
+      <image-slot id="home-appointment-photo" shape="rect" placeholder="Drop a picture"></image-slot>
+    </div>
+  </section>
+
+  <footer style="display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:24px;padding:36px 48px;border-top:1px solid rgba(36,31,26,0.09);font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:0.12em;color:rgba(36,31,26,0.42)">
+    <span>© 2026 Atelier Sareno</span>
+    <div style="display:flex;gap:28px">
+      <a href="Services.dc.html">Services</a>
+      <a href="Gallery.dc.html">Gallery</a>
+      <a href="About.dc.html">About</a>
+      <a href="Appointment.dc.html">Appointments</a>
+    </div>
+  </footer>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  setHeroVideo(file) {
+    if (!file) return;
+    const url = URL.createObjectURL(file);
+    const v = document.getElementById('hero-video');
+    if (v) { v.src = url; v.play().catch(() => {}); }
+  }
+  onVideoChosen = e => this.setHeroVideo(e.target.files && e.target.files[0]);
+  onVideoDragOver = e => e.preventDefault();
+  onVideoDrop = e => {
+    e.preventDefault();
+    const file = e.dataTransfer.files && e.dataTransfer.files[0];
+    this.setHeroVideo(file);
+  };
+  renderVals() {
+    return {
+      onVideoChosen: this.onVideoChosen,
+      onVideoDragOver: this.onVideoDragOver,
+      onVideoDrop: this.onVideoDrop,
+      services: [
+        { num: "01", title: "Style & design consultation", short: "A conversation about your wardrobe, your work and how you actually live — before a single measure is taken.", meta: "60–90 min" },
+        { num: "02", title: "Bespoke & atelier", short: "Three levels of make, from house patterns to a pattern drafted for you alone.", meta: "Suits from $1,250" },
+        { num: "03", title: "Formal events & weddings", short: "Tuxedos and coordinated wedding party attire, managed end to end.", meta: "Grooms & parties" },
+        { num: "04", title: "Alterations", short: "Precise adjustments to restore the fit and finish of a garment you already own.", meta: "By appointment" }
+      ]
+    };
+  }
+}
+</script>
+</body>
+</html>

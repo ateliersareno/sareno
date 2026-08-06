@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300&amp;family=Jost:wght@300;400;500&amp;family=JetBrains+Mono:wght@400&amp;display=swap" rel="stylesheet">
+<script src="./image-slot.js"></script>
+<style>
+  body { margin: 0; background: #FBF9F5; }
+  a { color: inherit; text-decoration: none; }
+  a:hover { color: #B08D57; }
+  ::selection { background: #B08D57; color: #FBF9F5; }
+  input, select, textarea { font-family: Jost, sans-serif; }
+  input::placeholder, textarea::placeholder { color: rgba(239,234,225,0.32); }
+</style>
+</helmet>
+<div style="background:#FBF9F5;color:#241F1A;font-family:Jost,sans-serif;font-weight:300;overflow-x:hidden;min-height:100vh;display:flex;flex-direction:column">
+
+  <header style="position:sticky;top:0;z-index:50;display:flex;align-items:center;justify-content:space-between;gap:32px;padding:20px 48px;background:rgba(255,255,255,0.82);backdrop-filter:blur(14px);border-bottom:1px solid rgba(36,31,26,0.08)">
+    <a href="Atelier%20Sareno.dc.html" style="font-family: 'Cormorant Garamond',serif; font-size: 30px; letter-spacing: 0.34em; text-transform: uppercase; color: #242320">Atelier Sareno</a>
+    <nav style="display:flex;gap:36px;font-size:11px;letter-spacing:0.22em;text-transform:uppercase;color:rgba(36,31,26,0.85)">
+      <a href="Atelier%20Sareno.dc.html" style="color: #1F1E1B; font-weight: 700">Home</a>
+      <a href="Appointment.dc.html" style="color: #050505; font-weight: 700">Appointment</a>
+      <a href="Services.dc.html" style="color: #141312; font-weight: 700">Services</a>
+      <a href="About.dc.html" style="color: #1B1B1A; font-weight: 600">About</a>
+    </nav>
+  </header>
+
+  
+
+  <section style="flex:1;display:flex;justify-content:center">
+    
+  <div style="padding: 70px 64px 110px; background: #F1ECE3; display: flex; flex-direction: column; max-width: 760px; width: 855px">
+      <div style="aspect-ratio:16/9;width:calc(100% + 128px);margin-left:-64px;border:1px solid rgba(36,31,26,0.1);margin-bottom:36px;background:#F1ECE3">
+        <image-slot id="appointment-top-photo" shape="rect" fit="contain" placeholder="Drop a picture" style="background-color: #F1ECE3"></image-slot>
+      </div>
+      <h1 style="margin: 0; font-family: 'Cormorant Garamond',serif; font-weight: 300; font-size: clamp(44px,5.2vw,80px); line-height: 1; letter-spacing: -0.02em; color: #241F1A; text-align: center">Make an<br>appointment</h1>
+      <p style="margin: 16px auto 0; font-size: 18px; line-height: 1.75; color: rgba(36,31,26,0.8); max-width: 44ch; text-wrap: pretty; text-align: center">Consultations run 60–90 minutes and can be held at our atelier, at your home or office, or virtually. Tell us a little about what you have in mind and we'll confirm within one business day.</p>
+      <sc-if value="{{ sent }}" hint-placeholder-val="{{ false }}">
+        <div style="display:flex;flex-direction:column;gap:20px;align-items:flex-start;margin:auto 0">
+          <span style="font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:0.24em;text-transform:uppercase;color:#B08D57">Request received</span>
+          <h2 style="margin:0;font-family:'Cormorant Garamond',serif;font-weight:300;font-size:44px;line-height:1.1">Thank you — we'll be in touch shortly.</h2>
+          <button type="button" onClick="{{ reset }}" style="background:none;border:1px solid rgba(36,31,26,0.2);color:#241F1A;padding:14px 30px;font-size:11px;letter-spacing:0.22em;text-transform:uppercase;cursor:pointer;font-weight:300" style-hover="border-color:#B08D57">Book another</button>
+        </div>
+      </sc-if>
+      <sc-if value="{{ notSent }}" hint-placeholder-val="{{ true }}">
+        <form onSubmit="{{ submit }}" style="display:flex;flex-direction:column;gap:26px">
+          <label style="display:flex;flex-direction:column;gap:10px">
+            <span style="font-family: Jost; font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase; color: rgba(36,31,26,0.65); font-weight: 600">Your name</span>
+            <input type="text" required="" placeholder="Full name" style="background:none;border:none;border-bottom:1px solid rgba(36,31,26,0.16);color:#241F1A;font-size:17px;font-weight:300;padding:10px 0;outline:none" style-focus="border-bottom-color:#B08D57">
+          </label>
+          <label style="display:flex;flex-direction:column;gap:10px">
+            <span style="font-family: Jost; font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase; color: rgba(36,31,26,0.65); font-weight: 600">Email</span>
+            <input type="email" required="" placeholder="you@example.com" style="background:none;border:none;border-bottom:1px solid rgba(36,31,26,0.16);color:#241F1A;font-size:17px;font-weight:300;padding:10px 0;outline:none" style-focus="border-bottom-color:#B08D57">
+          </label>
+          <label style="display:flex;flex-direction:column;gap:10px">
+            <span style="font-family: Jost; font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase; color: rgba(36,31,26,0.65); font-weight: 600">Phone</span>
+            <input type="tel" required="" placeholder="Phone number" style="background:none;border:none;border-bottom:1px solid rgba(36,31,26,0.16);color:#241F1A;font-size:17px;font-weight:300;padding:10px 0;outline:none" style-focus="border-bottom-color:#B08D57">
+          </label>
+
+          <div style="display:flex;flex-direction:column;gap:12px">
+            <span style="font-family: Jost; font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase; color: rgba(36,31,26,0.65); font-weight: 600">Service</span>
+            <div style="position:relative">
+              <select onChange="{{ onServiceSelect }}" value="{{ state.service }}" style="width:100%;background:none;border:1px solid rgba(36,31,26,0.16);color:#241F1A;font-family:Jost,sans-serif;font-size:16px;font-weight:300;padding:14px 40px 14px 16px;outline:none;appearance:none;cursor:pointer">
+                <sc-for list="{{ serviceNames }}" as="name" hint-placeholder-count="4">
+                  <option value="{{ name }}">{{ name }}</option>
+                </sc-for>
+              </select>
+              <span style="position:absolute;right:16px;top:50%;transform:translateY(-50%);pointer-events:none;color:#241F1A;font-size:12px">▾</span>
+            </div>
+          </div>
+
+          <div style="display:flex;flex-direction:column;gap:12px">
+            <span style="font-family: Jost; font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase; color: rgba(36,31,26,0.65); font-weight: 600">Where</span>
+            <div style="position:relative">
+              <select onChange="{{ onPlaceSelect }}" value="{{ state.place }}" style="width:100%;background:none;border:1px solid rgba(36,31,26,0.16);color:#241F1A;font-family:Jost,sans-serif;font-size:16px;font-weight:300;padding:14px 40px 14px 16px;outline:none;appearance:none;cursor:pointer">
+                <sc-for list="{{ placeNames }}" as="name" hint-placeholder-count="3">
+                  <option value="{{ name }}">{{ name }}</option>
+                </sc-for>
+              </select>
+              <span style="position:absolute;right:16px;top:50%;transform:translateY(-50%);pointer-events:none;color:#241F1A;font-size:12px">▾</span>
+            </div>
+          </div>
+
+          <div style="display:flex;flex-direction:column;gap:12px">
+            <span style="font-family: Jost; font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase; color: rgba(36,31,26,0.65); font-weight: 600">Preferred date &amp; time</span>
+            <div style="border:1px solid rgba(36,31,26,0.16);padding:20px;display:flex;flex-direction:column;gap:16px">
+              <div style="display:flex;align-items:center;justify-content:space-between">
+                <button type="button" onClick="{{ prevMonth }}" style="background:none;border:none;color:#241F1A;font-size:16px;cursor:pointer;padding:4px 10px" style-hover="color:#B08D57">‹</button>
+                <span style="font-family:'Cormorant Garamond',serif;font-size:18px">{{ monthLabel }}</span>
+                <button type="button" onClick="{{ nextMonth }}" style="background:none;border:none;color:#241F1A;font-size:16px;cursor:pointer;padding:4px 10px" style-hover="color:#B08D57">›</button>
+              </div>
+              <div style="display:grid;grid-template-columns:repeat(7,1fr);gap:4px;font-family:'JetBrains Mono',monospace;font-size:10px;text-align:center;color:rgba(36,31,26,0.5)">
+                <sc-for list="{{ weekdays }}" as="wd" hint-placeholder-count="7">
+                  <span>{{ wd }}</span>
+                </sc-for>
+              </div>
+              <div style="display:grid;grid-template-columns:repeat(7,1fr);gap:4px">
+                <sc-for list="{{ calendarCells }}" as="cell" hint-placeholder-count="35">
+                  <button type="button" disabled="{{ cell.disabled }}" onClick="{{ cell.select }}" style="width:36px;height:36px;border:none;background:{{ cell.bg }};color:{{ cell.fg }};font-family:Jost;font-size:13px;cursor:{{ cell.cursor }};border-radius:50%">{{ cell.label }}</button>
+                </sc-for>
+              </div>
+              <div style="display:flex;flex-wrap:wrap;gap:8px;padding-top:8px;border-top:1px solid rgba(36,31,26,0.1)">
+                <sc-for list="{{ timeSlots }}" as="t" hint-placeholder-count="6">
+                  <button type="button" onClick="{{ t.select }}" style="background:{{ t.bg }};color:{{ t.fg }};border:1px solid rgba(36,31,26,0.16);padding:9px 14px;font-family:Jost;font-size:12px;cursor:pointer" style-hover="border-color:#B08D57">{{ t.label }}</button>
+                </sc-for>
+              </div>
+            </div>
+          </div>
+
+          <label style="display:flex;flex-direction:column;gap:10px">
+            <span style="font-family: Jost; font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase; color: rgba(36,31,26,0.65); font-weight: 600">Notes</span>
+            <textarea rows="3" placeholder="Occasion, timeline, anything we should know" style="background:none;border:none;border-bottom:1px solid rgba(36,31,26,0.16);color:#241F1A;font-size:17px;font-weight:300;padding:10px 0;outline:none;resize:vertical" style-focus="border-bottom-color:#B08D57"></textarea>
+          </label>
+
+          <button type="submit" style="align-self:flex-start;margin-top:10px;background:#B08D57;color:#FBF9F5;border:none;padding:17px 42px;font-family:Jost,sans-serif;font-size:12px;font-weight:400;letter-spacing:0.24em;text-transform:uppercase;cursor:pointer" style-hover="background:#241F1A">Request appointment</button>
+        </form>
+      </sc-if>
+      <div style="display: flex; flex-direction: column; gap: 2px; margin-top: 32px; padding-top: 28px; border-top: 1px solid rgba(36,31,26,0.1); font-family: 'Cormorant Garamond',serif; font-size: 14px; font-weight: 400; letter-spacing: 0.02em; color: #241F1A; line-height: 1.8">
+        <a href="mailto:info@ateliersareno.com" style="font-family: Jost">info@ateliersareno.com</a>
+        <a href="tel:16312238775" style="font-family: Jost">+1 (631) 223-8775</a>
+        <span style="font-family: Jost">By appointment only</span>
+        <span style="margin-top: 10px; font-family: Jost; font-size: 13px">734 Walt Whitman Road, Melville, NY 11747</span>
+      </div>
+    </div></section><footer style="background:#FBF9F5;color:#241F1A">
+    <div style="font-family: Times New Roman; font-weight: 600; font-size: clamp(64px,13vw,220px); line-height: 0.9; letter-spacing: 0.02em; text-align: center; padding: 60px 24px 40px; color: transparent; -webkit-text-stroke: 1.5px #000">Atelier Sareno</div>
+    <div style="display:flex;flex-wrap:wrap;align-items:center;justify-content:center;gap:32px;padding:0 48px 48px">
+      <div style="display:flex;align-items:center;gap:32px;flex-wrap:nowrap;justify-content:center;font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:0.12em;text-transform:uppercase">
+        <a href="Atelier%20Sareno.dc.html" style="color:#241F1A">Home</a>
+        <a href="About.dc.html" style="color:#241F1A">About</a>
+        <a href="Services.dc.html" style="color:#241F1A">Services</a>
+        <a href="Appointment.dc.html" style="color:#241F1A">Appointment</a>
+      </div>
+    </div>
+    <div style="border-top:1px solid rgba(36,31,26,0.16);padding:22px 48px;font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:0.1em;color:#B08D57">© 2026 Atelier Sareno</div>
+  </footer>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  state = { service: "Bespoke Suit — from $1,400", place: "Atelier", sent: false, viewYear: new Date().getFullYear(), viewMonth: new Date().getMonth(), selectedDate: null, selectedTime: null };
+  chips(list, key) {
+    return list.map(label => ({
+      label,
+      bg: "transparent",
+      fg: this.state[key] === label ? "#000" : "rgba(36,31,26,0.85)",
+      select: () => this.setState({ [key]: label })
+    }));
+  }
+  renderVals() {
+    const { viewYear, viewMonth, selectedDate } = this.state;
+    const today = new Date(); today.setHours(0,0,0,0);
+    const first = new Date(viewYear, viewMonth, 1);
+    const startOffset = first.getDay();
+    const daysInMonth = new Date(viewYear, viewMonth + 1, 0).getDate();
+    const cells = [];
+    for (let i = 0; i < startOffset; i++) cells.push({ label: "", disabled: true, bg: "transparent", fg: "transparent", cursor: "default", select: () => {} });
+    for (let d = 1; d <= daysInMonth; d++) {
+      const dateObj = new Date(viewYear, viewMonth, d);
+      const key = dateObj.toDateString();
+      const isPast = dateObj < today;
+      const isSelected = selectedDate === key;
+      cells.push({
+        label: String(d),
+        disabled: isPast,
+        bg: isSelected ? "#B08D57" : "transparent",
+        fg: isPast ? "rgba(36,31,26,0.3)" : isSelected ? "#FBF9F5" : "#241F1A",
+        cursor: isPast ? "default" : "pointer",
+        select: () => { if (!isPast) this.setState({ selectedDate: key }); }
+      });
+    }
+    return {
+      serviceOpts: this.chips(["Bespoke Suit — from $1,400", "Custom Shirts", "Wedding", "Alterations"], "service"),
+      serviceNames: ["Bespoke Suit — from $1,400", "Custom Shirts", "Wedding", "Alterations"],
+      state: this.state,
+      onServiceSelect: e => this.setState({ service: e.target.value }),
+      placeOpts: this.chips(["Atelier", "At Your Location", "Virtual"], "place"),
+      placeNames: ["Atelier", "At Your Location", "Virtual"],
+      onPlaceSelect: e => this.setState({ place: e.target.value }),
+      monthLabel: first.toLocaleString("default", { month: "long", year: "numeric" }),
+      weekdays: ["S", "M", "T", "W", "T", "F", "S"],
+      calendarCells: cells,
+      prevMonth: () => this.setState(s => { const m = s.viewMonth - 1; return m < 0 ? { viewMonth: 11, viewYear: s.viewYear - 1 } : { viewMonth: m }; }),
+      nextMonth: () => this.setState(s => { const m = s.viewMonth + 1; return m > 11 ? { viewMonth: 0, viewYear: s.viewYear + 1 } : { viewMonth: m }; }),
+      timeSlots: ["10:00 AM", "11:30 AM", "1:00 PM", "2:30 PM", "4:00 PM", "5:30 PM"].map(label => ({
+        label,
+        bg: this.state.selectedTime === label ? "#B08D57" : "transparent",
+        fg: this.state.selectedTime === label ? "#FBF9F5" : "#241F1A",
+        select: () => this.setState({ selectedTime: label })
+      })),
+      sent: this.state.sent,
+      notSent: !this.state.sent,
+      submit: e => { e.preventDefault(); this.setState({ sent: true }); },
+      reset: () => this.setState({ sent: false })
+    };
+  }
+}
+</script>
+</body>
+</html>
